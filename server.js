@@ -12,7 +12,8 @@ const pool = new Pool({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT
+    port: process.env.DB_PORT,
+    ssl: { rejectUnauthorized: false } // Required for Render
 });
 
 pool.connect().then(client => {
@@ -36,7 +37,7 @@ app.get('/', (req,res) => {
     res.json({ message: 'API is running' });
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);
 })
