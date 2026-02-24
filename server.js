@@ -25,7 +25,7 @@ pool.connect().then(client => {
 
 app.get('/api/players', async (req, res) => {
     try{
-        const result = await pool.query('select * from nfl_players');
+        const result = await pool.query('select * from public.nfl_players');
         res.json(result.rows);
     }catch (err){
         console.error(err);
